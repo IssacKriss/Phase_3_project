@@ -36,20 +36,13 @@ public class Product {
 	private String brand;
 	private String color;
 	
-	@ManyToMany(mappedBy = "products")
-	private List<Cart> carts = new ArrayList<>();
+//	@ManyToMany(mappedBy = "products")
+//	private List<Cart> carts = new ArrayList<>();
 
-	public Product(int product_id, String product_name, BigDecimal price, Date dateAdded, String brand, String color) {
-		super();
-		this.product_id = product_id;
-		this.product_name = product_name;
-		this.price = price;
-		this.dateAdded = dateAdded;
-		this.brand = brand;
-		this.color = color;
+	
 		
 		
 	}
 	
 
-}
+

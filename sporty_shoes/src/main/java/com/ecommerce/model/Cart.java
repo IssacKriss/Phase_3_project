@@ -31,11 +31,10 @@ public class Cart {
 	private int cart_id;
 	private String plan;
 	
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY )
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER )
 	@JoinTable(name = "cart_products",
 	joinColumns = @JoinColumn(name="cart_id"),
 	inverseJoinColumns = @JoinColumn(name="product_id"))
-
 	List<Product> products = new ArrayList<>();
 
 	public Cart(int cart_id, String plan) {
