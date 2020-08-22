@@ -52,7 +52,7 @@ public class UserController {
 
     @GetMapping("/users")
 	public List<User> getAllUsers() {
-		// TODO Auto-generated method stub
+		
 		return service.getAllUsers();
 	}
 
