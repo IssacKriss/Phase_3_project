@@ -47,7 +47,7 @@ public class ProductController {
 
 	@GetMapping("/products")
 	public List<Product> getAllProducts() {
-		// TODO Auto-generated method stub
+		
 		return service.getAllProducts();
 	}
 
