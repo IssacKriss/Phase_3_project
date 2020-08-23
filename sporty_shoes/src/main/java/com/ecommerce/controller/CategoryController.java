@@ -3,6 +3,10 @@ package com.ecommerce.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ecommerce.exception.BussinessException;
 import com.ecommerce.model.Category;
 import com.ecommerce.service.CategoryService;
 
@@ -20,6 +25,8 @@ public class CategoryController {
 	@Autowired
 	private CategoryService service;
 
+	private MultiValueMap<String, String> map;
+	
 	@PostMapping("/category")
 	public Category addCategory(@RequestBody  Category category) {
 		
@@ -33,9 +40,15 @@ public class CategoryController {
 	}
 
 	@GetMapping("/category/{id}")
-	public Category getCategoryById(@PathVariable int id) {
+	public ResponseEntity<Category> getCategoryById(@PathVariable int id) {
+		 try {
+				return new ResponseEntity<>(service.getCategoryById(id), HttpStatus.OK);
+			} catch (BussinessException e) {
+				map=new LinkedMultiValueMap<>() ;
+				map.add("ErrorMessage", e.getMessage());
+				return new ResponseEntity<>(null,map, HttpStatus.NOT_FOUND);
+			}
 		
-		return service.getCategoryById(id);
 	}
 
 	@DeleteMapping("/category/{id}")

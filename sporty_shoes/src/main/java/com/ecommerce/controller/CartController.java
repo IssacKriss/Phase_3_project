@@ -3,6 +3,10 @@ package com.ecommerce.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ecommerce.exception.BussinessException;
 import com.ecommerce.model.Cart;
 import com.ecommerce.service.CartService;
 
@@ -20,6 +25,8 @@ public class CartController {
 
 	@Autowired
 	private CartService service;
+	
+	private MultiValueMap<String, String> map;
 	
 	@PostMapping("/cart")
 	public Cart addCart(@RequestBody Cart cart) {
@@ -34,9 +41,16 @@ public class CartController {
 	}
 
 	@GetMapping("/cart/{id}")
-	public Cart getCartById(@PathVariable int id) {
+	public ResponseEntity<Cart> getCartById(@PathVariable int id) {
 		
-		return service.getCartById(id);
+		try {
+			return new ResponseEntity<>(service.getCartById(id), HttpStatus.OK);
+		} catch (BussinessException e) {
+			map=new LinkedMultiValueMap<>() ;
+			map.add("ErrorMessage", e.getMessage());
+			return new ResponseEntity<>(null,map, HttpStatus.NOT_FOUND);
+		}
+			
 	}
 
 	@DeleteMapping("/cart/{id}")

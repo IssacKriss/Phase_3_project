@@ -1,12 +1,15 @@
 package com.ecommerce.service.Impl;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ecommerce.dao.ProductRepository;
+import com.ecommerce.exception.BussinessException;
 import com.ecommerce.model.Product;
+import com.ecommerce.model.User;
 import com.ecommerce.service.ProductService;
 
 @Service
@@ -27,9 +30,18 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public Product getProductById(int id) {
+	public Product getProductById(int id) throws BussinessException {
 		
-		return dao.findById(id).get();
+		if (id <= 0) {
+			throw new BussinessException("The productId cannot be Zero or Negative. Please supply the right productId.");
+		}
+		Product product = null;
+		try {
+			product=dao.findById(id).get();
+		} catch (NoSuchElementException e) {
+			throw new BussinessException("No product found for the given id");
+		}
+		return product;
 	}
 
 	@Override

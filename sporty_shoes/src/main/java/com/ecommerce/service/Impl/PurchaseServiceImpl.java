@@ -2,11 +2,14 @@ package com.ecommerce.service.Impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ecommerce.dao.PurchaseRepository;
+import com.ecommerce.exception.BussinessException;
+import com.ecommerce.model.Product;
 import com.ecommerce.model.Purchase;
 import com.ecommerce.service.PurchaseService;
 
@@ -29,9 +32,18 @@ public class PurchaseServiceImpl implements PurchaseService {
 	}
 
 	@Override
-	public Purchase getPurchaseById(int id) {
+	public Purchase getPurchaseById(int id) throws BussinessException {
+		if (id <= 0) {
+			throw new BussinessException("The productId cannot be Zero or Negative. Please supply the right productId.");
+		}
+		Purchase purchase = null;
+		try {
+			purchase=dao.findById(id).get();
+		} catch (NoSuchElementException e) {
+			throw new BussinessException("No product found for the given id");
+		}
+		return purchase;
 		
-		return dao.findById(id).get();
 	}
 
 	@Override

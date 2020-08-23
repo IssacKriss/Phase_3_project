@@ -3,6 +3,10 @@ package com.ecommerce.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ecommerce.exception.BussinessException;
 import com.ecommerce.model.User;
 import com.ecommerce.service.UserService;
 
@@ -20,9 +25,10 @@ public class UserController {
 	@Autowired
 	private UserService service;
 
+	private MultiValueMap<String, String> map;
 	
 	public User authenticate(String user_id, String password) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -39,9 +45,16 @@ public class UserController {
 	}
 
     @GetMapping("/user/{id}")
-	public User getUserById(@PathVariable int id) {
+	public ResponseEntity<User> getUserById(@PathVariable int id) {
 		
-		return service.getUserById(id);
+		try {
+			return new ResponseEntity<>(service.getUserById(id), HttpStatus.OK) ;
+		} catch (BussinessException e) {
+			map=new LinkedMultiValueMap<>() ;
+			map.add("ErrorMessage", e.getMessage());
+			return new ResponseEntity<>(null,map, HttpStatus.NOT_FOUND);
+		}
+		
 	}
 
 	@DeleteMapping("/user/{id}")

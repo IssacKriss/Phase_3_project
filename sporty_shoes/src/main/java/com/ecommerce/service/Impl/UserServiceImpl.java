@@ -1,11 +1,13 @@
 package com.ecommerce.service.Impl;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ecommerce.dao.UserRepository;
+import com.ecommerce.exception.BussinessException;
 import com.ecommerce.model.User;
 import com.ecommerce.service.UserService;
 
@@ -17,7 +19,7 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public User authenticate(String user_id, String password) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -34,9 +36,17 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User getUserById(int id) {
-		
-		return dao.findById(id).get();
+	public User getUserById(int id) throws BussinessException{
+		if (id <= 0) {
+			throw new BussinessException("The userId cannot be Zero or Negative. Please supply the right userId.");
+		}
+		User user = null;
+		try {
+			user=dao.findById(id).get();
+		} catch (NoSuchElementException e) {
+			throw new BussinessException("No user found for the given id");
+		}
+		return user;
 	}
 
 	@Override
