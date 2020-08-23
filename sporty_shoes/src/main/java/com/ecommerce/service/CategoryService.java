@@ -8,17 +8,17 @@ import com.ecommerce.model.Category;
 
 public interface CategoryService {
 
-	public Category addCategory(Category category);
+	public Category addCategory(Category category) throws BussinessException;
 	
-	public Category updateCategory(Category category);
+	public Category updateCategory(Category category) throws BussinessException;
 	
 	public Category getCategoryById(int id) throws BussinessException;
 	
-	public void deleteCategoryCyId(int id);
+	public void deleteCategoryCyId(int id) throws BussinessException;
 	
-	public List<Category> getAllCategories();
+	public List<Category> getAllCategories() throws BussinessException;
 	
-	 public List<Category> getCategoryByName(String name);
+	 public List<Category> getCategoryByName(String name) throws BussinessException;
 	
 	
 }

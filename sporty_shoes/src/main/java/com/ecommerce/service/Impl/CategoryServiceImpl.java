@@ -20,13 +20,14 @@ public class CategoryServiceImpl implements CategoryService {
 	
 	
 	@Override
-	public Category addCategory(Category category) {
-		
+	public Category addCategory(Category category) throws BussinessException {
 		return dao.save(category);
+		
+		
 	}
 
 	@Override
-	public Category updateCategory(Category category) {
+	public Category updateCategory(Category category) throws BussinessException {
 		
 		return dao.save(category);
 	}
@@ -47,13 +48,16 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
-	public void deleteCategoryCyId(int id) {
-		dao.deleteById(id);
+	public void deleteCategoryCyId(int id) throws BussinessException {
+		
+			dao.deleteById(id);
+		
+		
 		
 	}
 
 	@Override
-	public List<Category> getAllCategories() {
+	public List<Category> getAllCategories() throws BussinessException {
 		
 		return dao.findAll();
 	}
@@ -62,7 +66,7 @@ public class CategoryServiceImpl implements CategoryService {
 		
 
 	@Override
-	public List<Category> getCategoryByName(String name) {
+	public List<Category> getCategoryByName(String name)  throws BussinessException{
 		
 		return dao.findByCname(name);
 	}

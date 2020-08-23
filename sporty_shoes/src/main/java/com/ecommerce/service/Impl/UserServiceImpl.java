@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.ecommerce.dao.UserRepository;
 import com.ecommerce.exception.BussinessException;
+import com.ecommerce.model.Cart;
 import com.ecommerce.model.User;
 import com.ecommerce.service.UserService;
 
@@ -18,20 +19,20 @@ public class UserServiceImpl implements UserService {
 	private UserRepository dao;
 	
 	@Override
-	public User authenticate(String user_id, String password) {
+	public User authenticate(String user_id, String password)  throws BussinessException{
 		
 		return null;
 	}
 
 	@Override
-	public User addUser(User user) {
+	public User addUser(User user)  throws BussinessException{
+	 return dao.save(user);
 		
-		return dao.save(user);
+		
 	}
 
 	@Override
-	public User updateUser(User user) {
-		
+	public User updateUser(User user) throws BussinessException {
 		return dao.save(user);
 	}
 
@@ -50,13 +51,16 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void deleteUserById(int id) {
-		dao.deleteById(id);
+	public void deleteUserById(int id) throws BussinessException {
+		
+			dao.deleteById(id);
+		
+		
 		
 	}
 
 	@Override
-	public List<User> getAllUsers() {
+	public List<User> getAllUsers() throws BussinessException {
 		
 		return dao.findAll();
 	}
@@ -64,7 +68,7 @@ public class UserServiceImpl implements UserService {
 	
 
 	@Override
-	public List<User> getAllUsersByName(String name) {
+	public List<User> getAllUsersByName(String name) throws BussinessException {
 	
 		return dao.findByName(name);
 	}

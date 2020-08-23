@@ -29,27 +29,19 @@ public class CartController {
 	private MultiValueMap<String, String> map;
 	
 	@PostMapping("/cart")
-	public Cart addCart(@RequestBody Cart cart) {
+	public Cart addCart(@RequestBody Cart cart) throws BussinessException {
 		
-		try {
+		
 			return service.addCart(cart);
-		} catch (BussinessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return cart;
+		
 	}
 
 	@PutMapping("/cart")
-	public Cart updateCart(@RequestBody Cart cart) {
+	public Cart updateCart(@RequestBody Cart cart) throws BussinessException {
 		
-		try {
+		
 			return service.updateCart(cart);
-		} catch (BussinessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return cart;
+		
 	}
 
 	@GetMapping("/cart/{id}")
@@ -71,7 +63,7 @@ public class CartController {
 		try {
 			service.deleteCartById(id);
 		} catch (BussinessException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}

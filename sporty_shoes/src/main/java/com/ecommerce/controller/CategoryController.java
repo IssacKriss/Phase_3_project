@@ -28,15 +28,20 @@ public class CategoryController {
 	private MultiValueMap<String, String> map;
 	
 	@PostMapping("/category")
-	public Category addCategory(@RequestBody  Category category) {
+	public Category addCategory(@RequestBody  Category category) throws BussinessException {
 		
-		return service.addCategory(category);
+		
+			return service.addCategory(category);
+		
 	}
 
 	@PutMapping("/category")
-	public Category updateCategory(@RequestBody  Category category) {
+	public Category updateCategory(@RequestBody  Category category) throws BussinessException {
 		
-		return service.updateCategory(category);
+		
+			return service.updateCategory(category);
+		
+		
 	}
 
 	@GetMapping("/category/{id}")
@@ -52,19 +57,21 @@ public class CategoryController {
 	}
 
 	@DeleteMapping("/category/{id}")
-	public void deleteCategoryCyId(@PathVariable int id) {
-		service.deleteCategoryCyId(id);
+	public void deleteCategoryCyId(@PathVariable int id) throws BussinessException {
+		
+			service.deleteCategoryCyId(id);
+		
 		
 	}
 
 	@GetMapping("/categories")
-	public List<Category> getAllCategories() {
+	public List<Category> getAllCategories() throws BussinessException {
 		
 		return service.getAllCategories();
 	}
 	
 	@GetMapping("/categories/name/{name}")
-    public List<Category> getCategoryByName(@PathVariable String name) {
+    public List<Category> getCategoryByName(@PathVariable String name) throws BussinessException {
 		
 		return service.getCategoryByName(name);
 	}

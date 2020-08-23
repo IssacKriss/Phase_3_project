@@ -19,24 +19,13 @@ public class CartServiceImpl implements CartService {
 	
 	@Override
 	public Cart addCart(Cart cart) throws BussinessException {
-		Cart cart1 = null;
-		try {
-			cart1=dao.save(cart1);
-		} catch (Exception e) {
-			throw new BussinessException("unable to add the cart. please check the user input");
-		}
-		return cart1; 
+		return dao.save(cart);
+		 
 	}
 
 	@Override
 	public Cart updateCart(Cart cart) throws BussinessException {
-		Cart cart1 = null;
-		try {
-			cart1=dao.save(cart1);
-		} catch (Exception e) {
-			throw new BussinessException("unable to update the cart. please check the user input");
-		}
-		return cart1;
+		return dao.save(cart);
 		
 	}
 
@@ -56,16 +45,8 @@ public class CartServiceImpl implements CartService {
 
 	@Override
 	public void deleteCartById(int id) throws BussinessException {
-		if (id <= 0) {
-			throw new BussinessException("The cartId cannot be Zero or Negative. Please supply the right cartId.");
-		}
-		Cart cart = null;
-		try {
-			dao.deleteById(id);
-		} catch (NoSuchElementException e) {
-			throw new BussinessException("No cart found for the given id");
-		}
 		
+		dao.deleteById(id);
 		 
 	
 	}

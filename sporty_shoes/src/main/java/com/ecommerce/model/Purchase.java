@@ -31,7 +31,7 @@ import lombok.ToString;
 public class Purchase {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int purchase_id;
 	
 	private Date dateofpurchase;
@@ -40,7 +40,7 @@ public class Purchase {
 //	@JoinColumn(name = "cart_id")
 //	private Cart cart_id;
 	
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id")
 	private User user_id;
 	

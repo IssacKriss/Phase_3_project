@@ -33,15 +33,19 @@ public class UserController {
 	}
 
 	@PostMapping("/user")
-	public User addUser(@RequestBody User user) {
+	public User addUser(@RequestBody User user) throws BussinessException {
 	
-		return service.addUser(user);
+		
+			return service.addUser(user);
+		
 	}
 
 	@PutMapping("/user")
-	public User updateUser(@RequestBody User user) {
+	public User updateUser(@RequestBody User user) throws BussinessException {
 		
-		return service.updateUser(user);
+		
+			return service.updateUser(user);
+		
 	}
 
     @GetMapping("/user/{id}")
@@ -58,19 +62,19 @@ public class UserController {
 	}
 
 	@DeleteMapping("/user/{id}")
-	public void deleteUserById(@PathVariable int id) {
+	public void deleteUserById(@PathVariable int id) throws BussinessException {
 		
-		
+		service.deleteUserById(id);
 	}
 
     @GetMapping("/users")
-	public List<User> getAllUsers() {
+	public List<User> getAllUsers() throws BussinessException {
 		
 		return service.getAllUsers();
 	}
 
     @GetMapping("/user/name/{name}")
-	public List<User> getAllUsersByName(@PathVariable String name) {
+	public List<User> getAllUsersByName(@PathVariable String name) throws BussinessException {
 		
 		return service.getAllUsersByName(name);
 	}
