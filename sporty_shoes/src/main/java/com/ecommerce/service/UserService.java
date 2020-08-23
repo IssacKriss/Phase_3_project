@@ -18,5 +18,5 @@ public interface UserService {
 	
 	public List<User> getAllUsers();
 	
-	public List<User> getAllUsersByAge(int age);
+	public List<User> getAllUsersByName(String name);
 }

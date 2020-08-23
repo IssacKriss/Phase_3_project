@@ -56,10 +56,10 @@ public class UserController {
 		return service.getAllUsers();
 	}
 
-
-	public List<User> getAllUsersByAge(int age) {
-		// TODO Auto-generated method stub
-		return null;
+    @GetMapping("/user/name/{name}")
+	public List<User> getAllUsersByName(@PathVariable String name) {
+		
+		return service.getAllUsersByName(name);
 	}
 	
 	

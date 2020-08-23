@@ -29,11 +29,11 @@ import lombok.ToString;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	private int user_id;
 	
 //    @Column(nullable = false)
-    private String user_name;
+    private String name;
     
 //    @Column(nullable = false)
     private int age;
@@ -50,7 +50,7 @@ public class User {
 //    @Column(nullable = false)
 	private String password;
 	
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "cart_id")
 	private Cart cart_id;
 }

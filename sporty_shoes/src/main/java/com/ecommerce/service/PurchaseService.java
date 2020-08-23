@@ -15,7 +15,7 @@ public interface PurchaseService {
 	
 	public List<Purchase> getPurchaseByDateOfPurchase(Date date);
 	
-	public List<Purchase> getPurchaseByCategory(String name);
+//	public List<Purchase> getPurchaseByCategory(String name);
 	
 	public List<Purchase> getAllPurchases();
 	

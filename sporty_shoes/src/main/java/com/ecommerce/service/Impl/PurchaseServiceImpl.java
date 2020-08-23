@@ -37,14 +37,14 @@ public class PurchaseServiceImpl implements PurchaseService {
 	@Override
 	public List<Purchase> getPurchaseByDateOfPurchase(Date date) {
 		
-		return null;
+		return dao.findByDateofpurchase(date);
 	}
 
-	@Override
-	public List<Purchase> getPurchaseByCategory(String name) {
-		
-		return null;
-	}
+//	@Override
+//	public List<Purchase> getPurchaseByCategory(String name) {
+//		
+//		return dao.findByCname(name);
+//	}
 
 	@Override
 	public List<Purchase> getAllPurchases() {

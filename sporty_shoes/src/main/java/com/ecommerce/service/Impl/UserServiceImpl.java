@@ -51,10 +51,12 @@ public class UserServiceImpl implements UserService {
 		return dao.findAll();
 	}
 
+	
+
 	@Override
-	public List<User> getAllUsersByAge(int age) {
-		
-		return null;
+	public List<User> getAllUsersByName(String name) {
+	
+		return dao.findByName(name);
 	}
 
 }

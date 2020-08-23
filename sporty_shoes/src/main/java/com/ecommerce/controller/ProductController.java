@@ -29,19 +29,19 @@ public class ProductController {
 
 	@PutMapping("/product")
 	public Product updateProduct(@RequestBody Product product) {
-		// TODO Auto-generated method stub
+	
 		return service.updateProduct(product);
 	}
 
 	 @GetMapping("/product/{id}")
 	public Product getProductById(@PathVariable int id) {
-		// TODO Auto-generated method stub
+		
 		return service.getProductById(id);
 	}
 
 	@DeleteMapping("/product/{id}")
 	public void deleteProductById(@PathVariable int id) {
-		// TODO Auto-generated method stub
+		service.deleteProductById(id);
 		
 	}
 
@@ -53,7 +53,7 @@ public class ProductController {
 
 	
 	public List<Product> getProductsByBrand(String brand) {
-		// TODO Auto-generated method stub
-		return null;
+	
+		return service.getProductsByBrand(brand);
 	}
 }

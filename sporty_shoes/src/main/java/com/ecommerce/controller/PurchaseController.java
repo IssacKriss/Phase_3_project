@@ -39,17 +39,17 @@ public class PurchaseController{
 		return service.getPurchaseById(id);
 	}
 
-	
-	public List<Purchase> getPurchaseByDateOfPurchase(@RequestBody Date date) {
+	 @GetMapping("/purchase/date/{date}")
+	public List<Purchase> getPurchaseByDateOfPurchase(@PathVariable Date date) {
 		
-		return null;
+		return service.getPurchaseByDateOfPurchase(date);
 	}
-
-
-	public List<Purchase> getPurchaseByCategory(@RequestBody String name) {
-		
-		return null;
-	}
+//
+//	 @GetMapping("/purchase/name/{name}")
+//	public List<Purchase> getPurchaseByCategory(@PathVariable String name) {
+//		
+//		return service.getPurchaseByCategory(name);
+//	}
 
 	@GetMapping("/purchases")
 	public List<Purchase> getAllPurchases() {

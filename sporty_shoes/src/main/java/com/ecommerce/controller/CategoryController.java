@@ -49,4 +49,10 @@ public class CategoryController {
 		
 		return service.getAllCategories();
 	}
+	
+	@GetMapping("/categories/name/{name}")
+    public List<Category> getCategoryByName(@PathVariable String name) {
+		
+		return service.getCategoryByName(name);
+	}
 }

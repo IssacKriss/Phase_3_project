@@ -47,7 +47,7 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public List<Product> getProductsByBrand(String brand) {
 		
-		return null;
+		return dao.findByBrand(brand);
 	}
 
 }

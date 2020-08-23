@@ -34,7 +34,7 @@ public class Purchase {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int purchase_id;
 	
-	private Date date_of_purchase;
+	private Date dateofpurchase;
 	
 //	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //	@JoinColumn(name = "cart_id")

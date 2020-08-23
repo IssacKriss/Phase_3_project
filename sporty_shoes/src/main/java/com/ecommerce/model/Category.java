@@ -34,7 +34,7 @@ public class Category {
 	@GeneratedValue(strategy =GenerationType.AUTO )
 	private int Category_id;
 	@Column(unique = true)
-	private String name;
+	private String cname;
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY )
 	@JoinTable(name = "category_products",
